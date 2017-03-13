@@ -1,0 +1,3 @@
+Get-QADGroupMember -Identity "sg-cnf-employees-us" -SizeLimit 0 -IncludedProperties division,employeeType,StateOrProvince,departmentNumber,physicalDeliveryOfficeName,co,manager | 
+Select samAccountName,Name,PrimarySMTPAddress,PhoneNumber,Title,division,department,departmentNumber,streetAddress,City,StateOrProvince,co,postalCode,company,physicalDeliveryOfficeName,employeeType,manager, @{name=’memberOf’;Expression={[string]::join(“;”, ($_.memberOf))}} | 
+Export-CSV -Path c:\working\sg-cnf-employees-us.csv -NoTypeInformation
